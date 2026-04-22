@@ -6,6 +6,16 @@ import { extractListingId } from '@/lib/extract-listing-id';
 import { fetchListing } from '@/lib/fetch-listing';
 import { sendInvoiceEmail } from '@/lib/send-invoice-email';
 
+function buildFilename(listingTitle: string, listingId: string) {
+  const safeTitle = listingTitle
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return `invoice-${safeTitle || listingId}.pdf`;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -34,20 +44,22 @@ export async function POST(request: NextRequest) {
 
     const listingId = extractListingId(inputUrl);
     const listing = await fetchListing(listingId);
+    const listingTitle =
+      listing.listingTitle ?? 'the requested vehicle listing';
 
     const pdfDocument = buildInvoiceDocument(listing);
     const pdfBuffer = await renderToBuffer(pdfDocument);
     const pdfBytes = new Uint8Array(pdfBuffer);
 
-    const filename = `invoice-${listingId}.pdf`;
+    const filename = buildFilename(listingTitle, listingId);
 
     if (action === 'email') {
       await sendInvoiceEmail({
         to: email!,
-        subject: `Garage Invoice - ${listing.listingTitle ?? listingId}`,
+        subject: `Garage Invoice - ${listingTitle}`,
         filename,
         pdfBytes,
-        listingTitle: listing.listingTitle,
+        listingTitle,
       });
 
       return Response.json({
