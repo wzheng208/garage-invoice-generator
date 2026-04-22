@@ -31,6 +31,7 @@ export default function RootLayout({
     >
       <body className='min-h-screen bg-[#f5f5f5] text-[#171a20]'>
         {children}
+        {/* Enabling Vercel Analytics to track usage and improve the app based on user interactions. */}
         <Analytics />
       </body>
     </html>
