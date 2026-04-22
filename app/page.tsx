@@ -67,7 +67,7 @@ export default function HomePage() {
             </div>
 
             <span className='text-[22px] font-medium tracking-[-0.02em] text-[#5b616b]'>
-              Garage · Tools
+              Garage
             </span>
           </div>
 
@@ -106,10 +106,6 @@ export default function HomePage() {
               {error && <p className='text-sm text-red-600'>{error}</p>}
             </form>
           </Card>
-
-          <p className='mt-7 text-center text-[15px] text-[#5f6672]'>
-            A Garage internal tool · Built for ops teams
-          </p>
         </div>
       </div>
     </main>

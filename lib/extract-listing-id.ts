@@ -1,7 +1,6 @@
 export function extractListingId(url: string): string {
-  const trimmed = url.trim();
 
-  const match = trimmed.match(
+  const match = url.match(
     /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i,
   );
 
