@@ -86,9 +86,12 @@ The listing data is passed into a React PDF document template that renders a str
 - Delivery and availability
 - Pricing
 
-### 5. Download the invoice
+### 5. Download or email the invoice
 
-The generated PDF is returned from the API route and downloaded in the browser.
+After the PDF is generated, the app supports two flows:
+
+Download: the generated PDF is returned from the API route and downloaded in the browser
+Email: the generated PDF is attached to an outbound email and sent using Resend
 
 ## Scripts
 ```text
