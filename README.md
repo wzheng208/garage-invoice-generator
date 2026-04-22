@@ -2,6 +2,8 @@
 
 A small Next.js tool that generates a PDF invoice from a Garage fire truck listing URL.
 
+🔗 **Live App:** https://garage-invoice-generator-xi.vercel.app/
+
 Users can paste a Garage listing link into the app, and the tool will:
 
 - Extract the listing UUID from the URL
